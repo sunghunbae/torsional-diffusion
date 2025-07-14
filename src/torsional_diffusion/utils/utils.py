@@ -3,7 +3,7 @@ import os
 import torch
 import yaml, time
 from collections import defaultdict
-from diffusion.score_model import TensorProductScoreModel
+from torsional_diffusion.diffusion.score_model import TensorProductScoreModel
 
 
 def get_model(args):

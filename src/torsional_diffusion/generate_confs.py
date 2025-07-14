@@ -7,8 +7,12 @@ from tqdm import tqdm
 import yaml
 import os.path as osp
 
-from utils.utils import get_model
-from diffusion.sampling import *
+from torsional_diffusion.utils.utils import get_model
+from torsional_diffusion.diffusion.sampling import *
+
+from rdkit import Chem
+
+
 
 parser = ArgumentParser()
 parser.add_argument('--model_dir', type=str, required=True, help='Path to folder with trained model and hyperparameters')
@@ -180,6 +184,12 @@ for smi_idx, (raw_smi, n_confs, smi) in test_data:
 
 # save to file
 if args.out:
-    with open(f'{args.out}', 'wb') as f:
-        pickle.dump(conformer_dict, f)
-print('Generated conformers for', len(conformer_dict), 'molecules')
+    with Chem.SDWriter(f'{args.out}') as sdf:
+        for k, mols in conformer_dict.items():
+            print('Generated conformers for', k, len(mols), 'conformers')
+            for mol in mols:
+                sdf.write(mol)
+            
+    #with open(f'{args.out}', 'wb') as f:
+    #    pickle.dump(conformer_dict, f)
+

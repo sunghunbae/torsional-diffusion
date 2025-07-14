@@ -11,8 +11,8 @@ from torch_geometric.data import Dataset, DataLoader
 from torch_geometric.transforms import BaseTransform
 from collections import defaultdict
 
-from utils.featurization import dihedral_pattern, featurize_mol, qm9_types, drugs_types
-from utils.torsion import get_transformation_mask, modify_conformer
+from torsional_diffusion.utils.featurization import dihedral_pattern, featurize_mol, qm9_types, drugs_types
+from torsional_diffusion.utils.torsion import get_transformation_mask, modify_conformer
 
 
 class TorsionNoiseTransform(BaseTransform):

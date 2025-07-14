@@ -1,17 +1,19 @@
 import random
-from utils.featurization import featurize_mol, featurize_mol_from_smiles
-from utils.torsion import *
-from diffusion.likelihood import *
-import torch, copy
-from copy import deepcopy
 import numpy as np
+import torch, copy
+
+from copy import deepcopy
 from torch_geometric.data import Dataset
 from torch_geometric.loader import DataLoader
 from rdkit import Chem, Geometry
 from rdkit.Chem import AllChem
 
-from utils.utils import time_limit, TimeoutException
-from utils.visualise import PDBFile
+from torsional_diffusion.diffusion.likelihood import *
+from torsional_diffusion.utils.featurization import featurize_mol, featurize_mol_from_smiles
+from torsional_diffusion.utils.torsion import *
+from torsional_diffusion.utils.utils import time_limit, TimeoutException
+from torsional_diffusion.utils.visualise import PDBFile
+
 from spyrmsd import molecule, graph
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

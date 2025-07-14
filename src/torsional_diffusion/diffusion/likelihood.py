@@ -3,8 +3,8 @@ import torch
 from rdkit.Chem import AllChem
 from scipy.stats import bootstrap
 
-from utils.torsion import perturb_batch
-from utils.xtb import *
+from torsional_diffusion.utils.torsion import perturb_batch
+from torsional_diffusion.utils.xtb import *
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
